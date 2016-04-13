@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="#375180"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
+
+	<LinearLayout
+		android:id="@+id/card"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="25dp"
+		android:orientation="horizontal">
+
+		<LinearLayout
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<TextView
+				android:id="@+id/txt_name"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="12sp"
+				android:textColor="#fff"
+				android:text="BARRACK OBAMA"/>
+
+			<TextView
+				android:id="@+id/txt_status"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="2dp"
+				android:textColor="#5D91CC"
+				android:textSize="16sp"
+				android:text="50 bpm | 39°C "/>
+
+			<TextView
+				android:id="@+id/txt_kamar"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="5dp"
+				android:textColor="#5D91CC"
+				android:textSize="10sp"
+				android:text="KAMAR 302"/>
+
+		</LinearLayout>
+
+		<Button
+			android:id="@+id/btn_handle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="12sp"
+			android:textColor="#fff"
+			android:text="HANDLE"
+			android:background="#5C9CD9"/>
+
+	</LinearLayout>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:layout_marginRight="10dp"
+		android:layout_marginLeft="10dp"
+		android:background="#3fff"/>
+
+</LinearLayout>

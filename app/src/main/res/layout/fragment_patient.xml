@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="#3F5F90"/>
+
+	<ScrollView
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#375180">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:gravity="center_horizontal">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="30dp"
+				android:textColor="#5D91CC"
+				android:text="HEARTBEAT"/>
+
+			<TextView
+				android:id="@+id/txt_heartbeat"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="30dp"
+				android:textSize="40sp"
+				android:textColor="#fff"
+				android:textStyle="bold"
+				android:text="40 bpm"/>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dp"
+				android:orientation="horizontal">
+
+				<Button
+					android:id="@+id/btn_dummy_handle"
+					android:layout_width="0dp"
+					android:layout_weight="1"
+					android:background="#0000"
+					android:layout_height="match_parent" />
+
+				<ImageView
+					android:layout_width="250dp"
+					android:layout_height="100dp"
+					android:src="#fff"/>
+
+				<Button
+					android:id="@+id/btn_dummy_done"
+					android:layout_width="0dp"
+					android:layout_weight="1"
+					android:background="#0000"
+					android:layout_height="match_parent" />
+
+			</LinearLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="25dp"
+				android:layout_marginRight="25dp"
+				android:layout_marginTop="20dp"
+				android:background="#3fff"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dp"
+				android:textColor="#5D91CC"
+				android:text="BODY TEMPERATURE"/>
+
+			<TextView
+				android:id="@+id/txt_temperature"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dp"
+				android:textSize="40sp"
+				android:textColor="#fff"
+				android:text="40° C"/>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginTop="20dp"
+				android:layout_marginLeft="25dp"
+				android:layout_marginRight="25dp"
+				android:background="#3fff"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dp"
+				android:textColor="#5D91CC"
+				android:text="PATIENT INFORMATION"/>
+
+			<TextView
+				android:id="@+id/txt_name"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dp"
+				android:textColor="#fff"
+				android:text="Name : Justin Bieber"/>
+
+			<TextView
+				android:id="@+id/txt_gender"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="#fff"
+				android:text="Gender : Male"/>
+
+			<TextView
+				android:id="@+id/txt_age"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="#fff"
+				android:text="Age : 23"/>
+
+			<TextView
+				android:id="@+id/txt_indication"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="#fff"
+				android:text="Indication : Hard to Breath"/>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginTop="20dp"
+				android:layout_marginLeft="25dp"
+				android:layout_marginRight="25dp"
+				android:background="#3fff"/>
+
+			<Button
+				android:id="@+id/btn_handle"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="50dp"
+				android:layout_marginRight="50dp"
+				android:layout_marginTop="25dp"
+				android:background="#5C9CD9"
+				android:textColor="#fff"
+				android:text="HANDLE"/>
+
+			<Button
+				android:id="@+id/btn_finish"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="50dp"
+				android:layout_marginRight="50dp"
+				android:layout_marginTop="25dp"
+				android:layout_marginBottom="25dp"
+				android:background="#5C9CD9"
+				android:textColor="#fff"
+				android:text="FINISH"/>
+
+		</LinearLayout>
+
+	</ScrollView>
+
+
+</LinearLayout>
+
