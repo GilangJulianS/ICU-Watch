@@ -10,15 +10,16 @@
 
 	<ImageView
 		android:layout_width="match_parent"
-		android:layout_height="80dp"
-		android:src="#fff"/>
+		android:layout_height="40dp"
+		android:scaleType="centerInside"
+		android:src="@drawable/logo"/>
 
 	<EditText
 		android:id="@+id/form_user"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:padding="15dp"
-		android:layout_marginTop="30dp"
+		android:layout_marginTop="60dp"
 		android:background="#496992"
 		android:textColor="#fff"
 		android:textColorHint="#fff"

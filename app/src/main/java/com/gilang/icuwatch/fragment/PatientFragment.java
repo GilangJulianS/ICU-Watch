@@ -3,6 +3,7 @@ package com.gilang.icuwatch.fragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gilang.icuwatch.R;
+import com.gilang.icuwatch.model.Patient;
 
 import java.util.Random;
 
@@ -27,20 +29,26 @@ public class PatientFragment extends Fragment {
 	public static final int FOR_DOCTOR = 101;
 	private AppCompatActivity activity;
 	private TextView txtHeartBeat, txtTemperature, txtName, txtGender, txtAge, txtIndication;
-	private Button btnFinish, btnHandle, btnDummyHandle, btnDummyDone;
+	private Button btnFinish, btnHandle, btnDummyHandle, btnDummyDone, btnDummyDrop, btnDummyLogout;
 	private Toolbar toolbar;
 	int type;
 	AlertDialog dialog;
 	CountDownTimer timer;
 	Random r;
+	Patient patient;
 
 	public PatientFragment(){}
 
-	public static PatientFragment newInstance(AppCompatActivity activity, int type){
+	public static PatientFragment newInstance(AppCompatActivity activity, int type, @Nullable Patient patient){
 		PatientFragment fragment = new PatientFragment();
 		fragment.activity = activity;
 		fragment.r = new Random();
 		fragment.type = type;
+		if(patient != null) {
+			fragment.patient = patient;
+		}else{
+			fragment.patient = new Patient("Justin Bieber", "Male", "Hard to Breath", 40, 102);
+		}
 		return fragment;
 	}
 
@@ -69,7 +77,7 @@ public class PatientFragment extends Fragment {
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 		if(type == FOR_DOCTOR) {
-			dialog = builder.setMessage("Justin Bieber Condition has drop!")
+			dialog = builder.setMessage(patient.name + "Condition has drop!")
 					.setPositiveButton("Handle", new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
@@ -83,7 +91,7 @@ public class PatientFragment extends Fragment {
 						}
 					}).create();
 		}else{
-			dialog = builder.setMessage(txtName.getText().toString() + " Condition has drop!")
+			dialog = builder.setMessage(patient.name + "Condition has drop!")
 					.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
@@ -102,19 +110,18 @@ public class PatientFragment extends Fragment {
 	}
 
 	public void updateView(int cycle){
-		int heartbeat = r.nextInt(43) + 59;
-		int temperature = r.nextInt(5) + 31;
+		int heartbeat = r.nextInt(10) + 90;
+		int temperature = r.nextInt(1) + 36;
+
+		if(cycle > 30 && cycle < 40){
+			heartbeat = 60;
+		}
+		if(cycle > 60 && cycle <= 70){
+			temperature = 31;
+		}
 
 		txtHeartBeat.setText(heartbeat + " bpm");
-//		if(heartbeat < 60 || heartbeat > 100){
-//			dialog.show();
-//		}
-		if(cycle % 60 == 0){
-			txtTemperature.setText(temperature + "°C");
-//			if(temperature < 32 || temperature > 34){
-//				dialog.show();
-//			}
-		}
+		txtTemperature.setText(temperature + "°C");
 	}
 
 	public void bindViews(View v){
@@ -128,7 +135,13 @@ public class PatientFragment extends Fragment {
 		btnHandle = (Button) v.findViewById(R.id.btn_handle);
 		btnDummyHandle = (Button) v.findViewById(R.id.btn_dummy_handle);
 		btnDummyDone = (Button) v.findViewById(R.id.btn_dummy_done);
+		btnDummyDrop = (Button) v.findViewById(R.id.btn_dummy_drop);
+		btnDummyLogout = (Button) v.findViewById(R.id.btn_dummy_logout);
 		toolbar = (Toolbar) v.findViewById(R.id.toolbar);
+
+		txtAge.setText("Page : " + patient.age);
+		txtName.setText("Name : " + patient.name);
+		txtGender.setText("Gender : " + patient.gender);
 
 		if(type == FOR_PATIENT){
 			btnFinish.setVisibility(View.GONE);
@@ -137,7 +150,7 @@ public class PatientFragment extends Fragment {
 				@Override
 				public void onClick(View v) {
 					AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-					final AlertDialog dialog = builder.setMessage("Pasien telah selesai ditangani")
+					final AlertDialog dialog = builder.setMessage("Patient has been handled")
 							.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog, int which) {
@@ -152,7 +165,7 @@ public class PatientFragment extends Fragment {
 				@Override
 				public void onClick(View v) {
 					AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-					final AlertDialog dialog = builder.setMessage("Pasien sedang ditangani")
+					final AlertDialog dialog = builder.setMessage("Patient is being handled by doctor")
 							.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog, int which) {
@@ -162,11 +175,19 @@ public class PatientFragment extends Fragment {
 					dialog.show();
 				}
 			});
+
+			btnDummyLogout.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					showDialog("Your account is logged out automatically because the patient treatment has finished");
+					activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, LoginFragment.newInstance(activity)).commit();
+				}
+			});
 		}else{
 			btnFinish.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					Toast.makeText(activity, "Finished", Toast.LENGTH_SHORT).show();
+					showDialog("Care has finished, patient account is automatically logged out");
 				}
 			});
 
@@ -177,5 +198,24 @@ public class PatientFragment extends Fragment {
 				}
 			});
 		}
+		btnDummyDrop.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.show();
+			}
+		});
+	}
+
+	public void showDialog(String message){
+		AlertDialog dialog =
+				new AlertDialog.Builder(activity)
+						.setMessage(message)
+						.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								dialog.dismiss();
+							}
+						}).create();
+		dialog.show();
 	}
 }

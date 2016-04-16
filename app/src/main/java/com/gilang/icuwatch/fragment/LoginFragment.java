@@ -1,7 +1,9 @@
 package com.gilang.icuwatch.fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -47,13 +49,32 @@ public class LoginFragment extends Fragment {
 			public void onClick(View v) {
 				String user = formUser.getText().toString().toLowerCase();
 				String password = formPassword.getText().toString();
-				if(user.contains("dr")){
-					openDoctorPage();
-				}else{
-					openPatientPage();
+				if(user.equals("") || password.equals("")){
+					showDialog("Please fill your username and password");
+				}else {
+					if (user.equals("drtobing") && user.equals("drtobing")) {
+						openDoctorPage();
+					} else if(user.equals("hana") && password.equals("alfian")){
+						openPatientPage();
+					}else{
+						showDialog("Your username and password doesn't match");
+					}
 				}
 			}
 		});
+	}
+
+	public void showDialog(String message){
+		AlertDialog dialog =
+				new AlertDialog.Builder(activity)
+						.setMessage(message)
+						.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								dialog.dismiss();
+							}
+						}).create();
+		dialog.show();
 	}
 
 	public void openDoctorPage(){
@@ -61,6 +82,6 @@ public class LoginFragment extends Fragment {
 	}
 
 	public void openPatientPage(){
-		activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, PatientFragment.newInstance(activity, PatientFragment.FOR_PATIENT)).commit();
+		activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, PatientFragment.newInstance(activity, PatientFragment.FOR_PATIENT, null)).commit();
 	}
 }

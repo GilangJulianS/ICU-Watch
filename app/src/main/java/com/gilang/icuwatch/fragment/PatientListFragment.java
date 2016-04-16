@@ -113,19 +113,18 @@ public class PatientListFragment extends Fragment {
 
 		for(Patient p : patients){
 			final Patient fp = p;
-			int heartbeat = r.nextInt(43) + 59;
-			int temperature = r.nextInt(5) + 31;
+			int heartbeat = r.nextInt(10) + 90;
+			int temperature = r.nextInt(1) + 36;
+
+			if(cycle > 30 && cycle < 40){
+				heartbeat = 60;
+			}
+			if(cycle > 60 && cycle <= 70){
+				temperature = 31;
+			}
 
 			p.heartbeat = heartbeat;
-//			if(p.heartbeat < 60 || p.heartbeat > 100){
-//				createDialog(p.name);
-//			}
-			if(cycle % 60 == 0){
-				p.temperature = temperature;
-//				if(p.temperature < 32 || p.temperature >34){
-//					createDialog(p.name);
-//				}
-			}
+			p.temperature = temperature;
 
 			View child = inflater.inflate(R.layout.card_patient, parent, false);
 			TextView txtName, txtStatus, txtKamar;
@@ -139,6 +138,8 @@ public class PatientListFragment extends Fragment {
 			card = (ViewGroup) child.findViewById(R.id.card);
 			if(p.status == 1){
 				btnHandle.setText("DONE");
+			}else if(p.status == 0){
+				btnHandle.setText("HANDLE");
 			}
 
 			txtName.setText(p.name);
@@ -151,7 +152,7 @@ public class PatientListFragment extends Fragment {
 						Toast.makeText(activity, "Patient Handled", Toast.LENGTH_SHORT).show();
 						fp.status = 1;
 					}else{
-
+						fp.status = 0;
 					}
 				}
 			});
@@ -159,7 +160,7 @@ public class PatientListFragment extends Fragment {
 			card.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, PatientFragment.newInstance(activity, PatientFragment.FOR_DOCTOR)).addToBackStack(null).commit();
+					activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, PatientFragment.newInstance(activity, PatientFragment.FOR_DOCTOR, fp)).addToBackStack(null).commit();
 				}
 			});
 
@@ -168,9 +169,10 @@ public class PatientListFragment extends Fragment {
 	}
 
 	public void addDummyData(){
-		patients.add(new Patient("BARRACK OBAMA", "Male", "Hard to Breath", 35, 302));
-		patients.add(new Patient("JACK DANIEL", "Male", "Hard to Breath", 35, 302));
-		patients.add(new Patient("JUSTIN BIEBER", "Male", "Hard to Breath", 35, 302));
+		int roomNum = r.nextInt(100) + 200;
+		patients.add(new Patient("BARRACK OBAMA", "Male", "Hard to Breath", 30, roomNum));
+		patients.add(new Patient("JACK DANIEL", "Male", "Hard to Breath", 45, roomNum + 20));
+		patients.add(new Patient("JUSTIN BIEBER", "Male", "Hard to Breath", 23, roomNum + 67));
 	}
 
 
