@@ -1,6 +1,7 @@
 package com.gilang.icuwatch.fragment;
 
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -44,6 +45,11 @@ public class LoginFragment extends Fragment {
 		formUser = (EditText) v.findViewById(R.id.form_user);
 		formPassword = (EditText) v.findViewById(R.id.form_password);
 		btnLogin = (Button) v.findViewById(R.id.btn_login);
+		Typeface font = Typeface.createFromAsset(activity.getAssets(), "fonts/Brandon_med.otf");
+		formUser.setTypeface(font);
+		formPassword.setTypeface(font);
+		btnLogin.setTypeface(font);
+
 		btnLogin.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

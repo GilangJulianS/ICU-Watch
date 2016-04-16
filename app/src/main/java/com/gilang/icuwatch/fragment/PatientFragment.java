@@ -1,6 +1,7 @@
 package com.gilang.icuwatch.fragment;
 
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
@@ -138,6 +139,23 @@ public class PatientFragment extends Fragment {
 		btnDummyDrop = (Button) v.findViewById(R.id.btn_dummy_drop);
 		btnDummyLogout = (Button) v.findViewById(R.id.btn_dummy_logout);
 		toolbar = (Toolbar) v.findViewById(R.id.toolbar);
+		TextView txt1 = (TextView) v.findViewById(R.id.txt1);
+		TextView txt2 = (TextView) v.findViewById(R.id.txt2);
+		TextView txt3 = (TextView) v.findViewById(R.id.txt3);
+
+		Typeface font = Typeface.createFromAsset(activity.getAssets(), "fonts/Brandon_med.otf");
+		txtHeartBeat.setTypeface(font);
+		txtTemperature.setTypeface(font);
+		txtName.setTypeface(font);
+		txtGender.setTypeface(font);
+		txtAge.setTypeface(font);
+		txtIndication.setTypeface(font);
+		txt1.setTypeface(font);
+		txt2.setTypeface(font);
+		txt3.setTypeface(font);
+		btnFinish.setTypeface(font);
+		btnHandle.setTypeface(font);
+
 
 		txtAge.setText("Page : " + patient.age);
 		txtName.setText("Name : " + patient.name);

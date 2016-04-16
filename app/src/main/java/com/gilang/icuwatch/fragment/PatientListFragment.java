@@ -1,6 +1,7 @@
 package com.gilang.icuwatch.fragment;
 
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
@@ -126,6 +127,8 @@ public class PatientListFragment extends Fragment {
 			p.heartbeat = heartbeat;
 			p.temperature = temperature;
 
+			Typeface font = Typeface.createFromAsset(activity.getAssets(), "fonts/Brandon_med.otf");
+
 			View child = inflater.inflate(R.layout.card_patient, parent, false);
 			TextView txtName, txtStatus, txtKamar;
 			ViewGroup card;
@@ -135,6 +138,11 @@ public class PatientListFragment extends Fragment {
 			txtStatus = (TextView) child.findViewById(R.id.txt_status);
 			txtKamar = (TextView) child.findViewById(R.id.txt_kamar);
 			btnHandle = (Button) child.findViewById(R.id.btn_handle);
+			txtName.setTypeface(font);
+			txtStatus.setTypeface(font);
+			txtKamar.setTypeface(font);
+			btnHandle.setTypeface(font);
+
 			card = (ViewGroup) child.findViewById(R.id.card);
 			if(p.status == 1){
 				btnHandle.setText("DONE");

@@ -37,6 +37,7 @@
 					android:background="#0000"/>
 
 				<TextView
+					android:id="@+id/txt1"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:textColor="#5D91CC"
@@ -97,6 +98,7 @@
 				android:background="#3fff"/>
 
 			<TextView
+				android:id="@+id/txt2"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="20dp"
@@ -121,6 +123,7 @@
 				android:background="#3fff"/>
 
 			<TextView
+				android:id="@+id/txt3"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="20dp"
